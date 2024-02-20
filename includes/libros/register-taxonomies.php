@@ -23,7 +23,8 @@ function registrar_taxonomia_genero_libro()
     register_taxonomy('genero_libro', 'libro', $args);
 }
 add_action('init', 'registrar_taxonomia_genero_libro');
-function cargar_plantilla_libro($template) {
+function cargar_plantilla_libro($template)
+{
     if (is_singular('libro') && !file_exists(get_template_directory() . '/single-libro.php')) {
         $template = plugin_dir_path(__FILE__) . '/single-libro.php';
     }

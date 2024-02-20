@@ -1,4 +1,5 @@
 <?php
+
 function registrar_libros()
 {
     $labels = array(
@@ -18,10 +19,23 @@ function registrar_libros()
         'labels'              => $labels,
         'public'              => true,
         'has_archive'         => true,
-        'menu_icon'           => 'dashicons-book-alt', // Puedes cambiar el icono según tu preferencia
+        'menu_icon'           => 'dashicons-book-alt',
         'supports'            => array('title', 'thumbnail'),
         'rewrite'             => array('slug' => 'libros'),
     );
     register_post_type('libro', $args);
 }
 add_action('init', 'registrar_libros');
+
+
+function cambiar_texto_admin_bar($wp_admin_bar)
+{
+    $args = $wp_admin_bar->get_node('archive');
+
+    if ($args) {
+        $args->title = 'Ver Libros';
+        $wp_admin_bar->add_node($args);
+    }
+}
+
+add_action('admin_bar_menu', 'cambiar_texto_admin_bar', 999);
